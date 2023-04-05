@@ -1,4 +1,5 @@
 import axios, { AxiosResponse, AxiosInstance } from 'axios'
+import qs from 'qs'
 
 import { API_TOKEN } from '../constants/config.ts'
 
@@ -14,8 +15,8 @@ type BuildingResponse = {
   buildings: any[]
 }
 
-export const getBuildings = async (): Promise<AxiosResponse<BuildingResponse>> => {
-  const result = await instance.get('/buildings')
+export const getBuildings = async (params): Promise<AxiosResponse<BuildingResponse>> => {
+  const result = await instance.get(`/buildings?${qs.stringify(params)}`)
 
   return result
 }
