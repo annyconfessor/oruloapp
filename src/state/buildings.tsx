@@ -6,7 +6,6 @@ interface IBuildingsContext {
   meta: any
   isLoading: boolean
   buildings: string[]
-  favorites: string[]
   addFavorite: (item: string) => void
   setPage: (page: number) => void
 }
@@ -17,21 +16,15 @@ const DEFAULT_VALUE = {
   },
   loading: false,
   buildings: [] as IBuildingsContext['buildings'],
-  favorites: [] as IBuildingsContext['favorites'],
   addFavorite: () => null
 }
 
 export const BuildingsContext = createContext<IBuildingsContext>(DEFAULT_VALUE);
 
 export const BuildingsContextProvider: React.FC<IBuildingsContext> = ({ children }) => {
-  const [favorites, setFavorites] = useState<string[]>([])
   const [buildings, setBuildings] = useState<any>([])
   const [isLoading, setLoading] = useState<boolean>(false)
   const [meta, setMeta] = useState(DEFAULT_VALUE.meta)
-
-  const addFavorite = (item: string) => {
-    setFavorites([...favorites, item])
-  }
 
   useEffect(() => {
     const fetchBuildings = async () => {
@@ -57,9 +50,7 @@ export const BuildingsContextProvider: React.FC<IBuildingsContext> = ({ children
         meta,
         setPage,
         isLoading,
-        buildings,
-        favorites,
-        addFavorite
+        buildings
       }}
     >
       {children}

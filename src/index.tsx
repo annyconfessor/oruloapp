@@ -9,6 +9,7 @@ import './assets/css/reset.css'
 import Buildings from './buildings/index.tsx'
 
 import { BuildingsContextProvider } from './state/buildings.tsx'
+import { FavoritesContextProvider } from './state/favorites.tsx'
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -16,11 +17,13 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BuildingsContextProvider>
-      <ThemeProvider theme={theme.main}>
-        <Buildings />
-      </ThemeProvider>
-    </BuildingsContextProvider>
+    <FavoritesContextProvider>
+      <BuildingsContextProvider>
+        <ThemeProvider theme={theme.main}>
+          <Buildings />
+        </ThemeProvider>
+      </BuildingsContextProvider>
+    </FavoritesContextProvider>
   </React.StrictMode>
 );
 

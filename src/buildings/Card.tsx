@@ -1,57 +1,37 @@
 import React from 'react'
 import styled from 'styled-components'
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai'
 
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 3fr 5fr;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .1);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: all ease-in-out .2s;
-  cursor: pointer;
+import {
+  Wrapper,
+  Image,
+  Content,
+  Header,
+  Title,
+  Subtitle,
+  Details,
+  About,
+  AboutItem,
+  Pricing,
+  PricingItem
+} from './styles.tsx'
 
-  &:hover {
-    box-shadow: 0 0 8px rgba(0, 0, 0, .2);
-  }
+const FavoriteWrapper = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 .5rem;
 `
 
-const Image = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`
+const Card = ({ isFavorite, handleFavorite, data }) => {
+  const FavoriteElement = isFavorite ? AiFillHeart : AiOutlineHeart
 
-const Content = styled.div`
-  padding: .5rem;
-`
-
-const Header = styled.div``
-
-const Title = styled.h2``
-
-const SubTitle = styled.h3``
-
-const Details = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: .5rem;
-  padding: .5rem 0;
-`
-
-const About = styled.ul``
-
-const AboutItem = styled.li``
-
-const Pricing = styled.div``
-
-const Card = ({ data }) => {
   return (
     <Wrapper>
       <Image alt="figure" src={data.default_image['200x140']} />
       <Content>
         <Header>
           <Title>{data.name}</Title>
-          <SubTitle>{`${data.address?.area}, ${data.address?.city}`}</SubTitle>
+          <Subtitle>{`${data.address?.area}, ${data.address?.city}`}</Subtitle>
         </Header>
         <Details>
           <About>
@@ -61,11 +41,14 @@ const Card = ({ data }) => {
             <AboutItem>{`${data.min_parking} vaga(s)`}</AboutItem>
           </About>
           <Pricing>
-            <h3>A partir de<br/></h3>
-            <h3>{`R$ ${data.min_price}`}</h3>
-            <h3>{`R$ ${data.price_per_private_square_meter} m²`}</h3>
+            <PricingItem>A partir de<br/></PricingItem>
+            <PricingItem>{`R$ ${data.min_price}`}</PricingItem>
+            <PricingItem>{`R$ ${data.price_per_private_square_meter} m²`}</PricingItem>
           </Pricing>
         </Details>
+        <FavoriteWrapper>
+          <FavoriteElement color="red" size="1.5rem" title="favorite-btn" onClick={() => handleFavorite(data.id)} />
+        </FavoriteWrapper>
       </Content>
     </Wrapper>
   )
