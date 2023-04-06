@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client'
 import { ThemeProvider } from 'styled-components'
 
 import theme from './theme/index.ts'
-import reportWebVitals from './reportWebVitals'
+import reportWebVitals from './reportWebVitals.ts'
 import './assets/css/reset.css'
 
 import Buildings from './buildings/index.tsx'
