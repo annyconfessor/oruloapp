@@ -28,9 +28,14 @@ export const Content = styled.div`
 
 export const Header = styled.div``
 
-export const Title = styled.h2``
+export const Title = styled.h2`
+  font-size: 18px;
+  font-weight: 600;
+`
 
-export const Subtitle = styled.h3``
+export const Subtitle = styled.h3`
+  font-size: 14px;
+`
 
 export const Details = styled.div`
   display: grid;
